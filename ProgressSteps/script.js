@@ -37,20 +37,30 @@ const update = (forward) => {
             if (!isUpdated && !x.classList.contains('active')) {
                 x.classList.add('active');
                 isUpdated = true;
+                console.log('CurrentActive' + currentActive)
+                console.log('updating')
+                console.log(x)
             }
         })
     } else if (!isUpdated && !forward) {
+
         for (let i = 0; i < (circles.length - 1); i++) {
-            circles[i].classList.forEach(x => console.log(x));
             if ((circles[i].classList.contains('active') &&
                     !circles[i + 1].classList.contains('active')) ||
                 ((i + 1) == circles.length && circles[i].contains('active'))
             ) {
+
+                console.log('CurrentActive' + currentActive)
+                console.log('removing');
+                console.log(circles[i]);
+                console.log(`currnt index --${i} and total Lenght --${circles.length}`)
                 circles[i].classList.remove('active');
             }
 
         }
 
     }
+    const active = document.querySelectorAll('.active');
+    progress.style.width = (active.length - 1) / (circles.length - 1) * 100 + '%';
 
 }
