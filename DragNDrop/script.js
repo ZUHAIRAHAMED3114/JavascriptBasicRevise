@@ -51,3 +51,44 @@ function dragDrop() {
     dragElement.className = 'empty'
     this.append(fill)
 }
+
+// const container = document.body;
+
+// container.addEventListener('dragstart', function(e) {
+//     if (e.target.classList.contains('fill')) {
+//         e.target.classList.add('hold');
+//         setTimeout(() => {
+//             e.target.className = "invisible";
+//         }, 0);
+//     }
+// });
+
+// container.addEventListener('dragend', function(e) {
+//     if (e.target.classList.contains('fill')) {
+//         e.target.className = 'fill';
+//     }
+// });
+
+// container.addEventListener('dragover', function(e) {
+//     e.preventDefault();
+// });
+
+// container.addEventListener('dragenter', function(e) {
+//     if (e.target.classList.contains('empty')) {
+//         e.target.classList.add('hovered');
+//     }
+// });
+
+// container.addEventListener('dragleave', function(e) {
+//     if (e.target.classList.contains('empty')) {
+//         e.target.classList.remove('hovered');
+//     }
+// });
+
+// container.addEventListener('drop', function(e) {
+//     if (e.target.classList.contains('empty')) {
+//         e.target.classList.remove('hovered');
+//         e.target.append(document.querySelector('.invisible'));
+//         e.target.className = 'empty';
+//     }
+// });
