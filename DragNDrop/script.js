@@ -1,94 +1,49 @@
-const fill = document.querySelector('.fill');
-const empties = document.querySelectorAll('.empty');
+const container = document.body;
+var fill = document.querySelector('.fill')
+container.addEventListener('dragstart', function(e) {
+    if (e.target.classList.contains('fill')) {
+        e.target.classList.add('hold');
+        setTimeout(() => {
+            e.target.className = "invisible";
+        }, 0);
+    }
+});
 
-fill.addEventListener('dragstart', dragStart)
-fill.addEventListener('dragend', dragEnd);
+container.addEventListener('dragend', function(e) {
+    if (e.target.classList.contains('fill')) {
+        e.target.className = 'fill';
+    }
+});
 
+container.addEventListener('dragover', function(e) {
+    if (e.target.classList.contains('empty')) {
+        e.preventDefault();
 
-for (var empty of empties) {
-    empty.addEventListener('dragover', dragOver);
-    empty.addEventListener('dragenter', dragEnter);
-    empty.addEventListener('dragleave', dragLeave);
-    empty.addEventListener('drop', dragDrop);
-}
+    }
+});
 
-function dragStart() {
-    var dragElement = this;
-    dragElement.classList.add('hold');
-    setTimeout(() => {
-        //dragElement.style.display = "none";
-        this.className = "invisible"
+container.addEventListener('dragenter', function(e) {
+    if (e.target.classList.contains('empty')) {
+        e.target.classList.add('hovered');
+    }
+});
 
-    }, 0)
+container.addEventListener('dragleave', function(e) {
+    if (e.target.classList.contains('empty')) {
+        // e.target.classList.remove('hovered');
+        e.target.className = 'empty'
+    }
+});
 
+container.addEventListener('drop', function(e) {
+    console.log(e.target)
+        //var x = document.querySelector();
+    console.log(x);
+    console.log(e);
+    if (e.target.classList.contains('empty') && this.id === e.target.id) {
+        console.log("dropping")
+        e.target.className = 'empty';
+        e.target.append(fill);
 
-}
-
-function dragEnd() {
-
-    var dragElement = this;
-    dragElement.className = 'fill';
-}
-
-function dragOver(e) {
-    e.preventDefault();
-}
-
-function dragEnter(e) {
-    e.preventDefault()
-    this.className += ' hovered'
-}
-
-function dragLeave() {
-    this.className = 'empty'
-}
-
-function dragDrop() {
-    console.log('drag Drop');
-    var dragElement = this;
-    console.log(dragElement);
-
-    dragElement.className = 'empty'
-    this.append(fill)
-}
-
-// const container = document.body;
-
-// container.addEventListener('dragstart', function(e) {
-//     if (e.target.classList.contains('fill')) {
-//         e.target.classList.add('hold');
-//         setTimeout(() => {
-//             e.target.className = "invisible";
-//         }, 0);
-//     }
-// });
-
-// container.addEventListener('dragend', function(e) {
-//     if (e.target.classList.contains('fill')) {
-//         e.target.className = 'fill';
-//     }
-// });
-
-// container.addEventListener('dragover', function(e) {
-//     e.preventDefault();
-// });
-
-// container.addEventListener('dragenter', function(e) {
-//     if (e.target.classList.contains('empty')) {
-//         e.target.classList.add('hovered');
-//     }
-// });
-
-// container.addEventListener('dragleave', function(e) {
-//     if (e.target.classList.contains('empty')) {
-//         e.target.classList.remove('hovered');
-//     }
-// });
-
-// container.addEventListener('drop', function(e) {
-//     if (e.target.classList.contains('empty')) {
-//         e.target.classList.remove('hovered');
-//         e.target.append(document.querySelector('.invisible'));
-//         e.target.className = 'empty';
-//     }
-// });
+    }
+});
